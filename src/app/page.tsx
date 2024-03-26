@@ -1,9 +1,15 @@
-import Hero from "@/components/hero";
+import Engineering from "@/components/sections/engineering";
+import Hero from "@/components/sections/hero";
+import Cabinets from "@/components/sections/cabinets";
 
 export default function Home() {
   return (
-    <div className="w-full h-[1000px] bg-chalk">
-      <Hero />
+    <div className="flex min-h-screen">
+      <div className="relative w-full overflow-hidden">
+        <Hero />
+        <Engineering />
+        <Cabinets />
+      </div>
     </div>
   );
 }

@@ -22,6 +22,8 @@ const config: Config = {
       goldenrod: "#C4A35A",
       rain: "#26495C",
       cafe: "#A18276",
+      darkcafe: "#6A544B",
+      creme: "#FFF7E2",
     },
   },
   plugins: [],
