@@ -16,14 +16,14 @@ export default function Hero() {
           <div className="w-fit">
             <div>
               <div className="font-semibold text-2xl lg:text-4xl">
-                hey i'm kenneth.
+                {"hey i'm kenneth."}
               </div>
               <div className="font-normal text-lg lg:text-2xl">
-                i'm a software engineering student @ uw.
+                {"i'm a software engineering student @ uw."}
               </div>
             </div>
             <div className="font-normal text-lg lg:text-2xl">
-              trying to be a sponge!
+              {"trying to be a sponge!"}
             </div>
             <div className="h-4" />
             <div className="text-lg lg:text-2xl">currently...</div>
