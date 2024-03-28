@@ -24,16 +24,19 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
   const toggleFullscreen = (e: any) => {
     e.preventDefault();
     if (!isFullscreen) {
-      document.documentElement.requestFullscreen().catch((e) => {
-        setIsFullscreen(true);
+      setIsFullscreen(true);
+      try {
+        if (document?.documentElement?.requestFullscreen)
+          document.documentElement.requestFullscreen();
+      } catch (e) {
         console.error(e);
-      });
+      }
     } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch((e) => {
-          setIsFullscreen(false);
-          console.error(e);
-        });
+      setIsFullscreen(false);
+      try {
+        if (document?.exitFullscreen) document.exitFullscreen();
+      } catch (e) {
+        console.error(e);
       }
     }
   };
