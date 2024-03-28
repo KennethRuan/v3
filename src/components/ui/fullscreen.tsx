@@ -1,15 +1,21 @@
+import { cn } from "@/utils";
 import React, { useEffect, useState } from "react";
+import { useFullscreenContext } from "../providers/fullscreen-provider";
 
 type FullscreenComponentProps = {
   children: React.ReactNode;
 };
 
 const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const fullscreenCont = useFullscreenContext();
+  const { isFullscreen, setIsFullscreen } = fullscreenCont;
 
   useEffect(() => {
-    document.body.style.overflow = isFullscreen ? "hidden" : "";
-  }, [isFullscreen]);
+    console.log(fullscreenCont);
+  }, [fullscreenCont]);
+
+  const fullscreenStyle =
+    "fixed top-0 left-0 w-screen h-screen z-[9999] overflow-hidden";
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -43,10 +49,12 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
 
   return (
     <div className="relative w-full h-full">
-      <div className="w-full h-full">{children}</div>
+      <div className={`w-full h-full ${isFullscreen ? fullscreenStyle : ""}`}>
+        {children}
+      </div>
       <button
         onClick={toggleFullscreen}
-        className="absolute top-2 right-2 px-4 py-4 border-black text-black cursor-pointer"
+        className="absolute top-2 right-2 px-4 py-4 border-black text-black cursor-pointer z-[9999]"
       >
         {isFullscreen ? "A" : "B"}
       </button>
