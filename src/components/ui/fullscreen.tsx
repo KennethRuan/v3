@@ -8,11 +8,12 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
+    document.body.style.overflow = isFullscreen ? "hidden" : "";
+  }, [isFullscreen]);
+
+  useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
-      document.body.style.overflow = !!document.fullscreenElement
-        ? "hidden"
-        : "";
     };
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () => {
@@ -22,13 +23,17 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
 
   const toggleFullscreen = (e: any) => {
     e.preventDefault();
-    if (!document.fullscreenElement) {
-      document.documentElement
-        .requestFullscreen()
-        .catch((e) => console.error(e));
+    if (!isFullscreen) {
+      document.documentElement.requestFullscreen().catch((e) => {
+        setIsFullscreen(true);
+        console.error(e);
+      });
     } else {
       if (document.exitFullscreen) {
-        document.exitFullscreen().catch((e) => console.error(e));
+        document.exitFullscreen().catch((e) => {
+          setIsFullscreen(false);
+          console.error(e);
+        });
       }
     }
   };
