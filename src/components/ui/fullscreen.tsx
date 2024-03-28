@@ -12,10 +12,9 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
   const { isFullscreen, setIsFullscreen } = fullscreenCont;
 
   const fullscreenStyle =
-    "fixed top-0 left-0 w-screen h-screen z-[9999] overflow-hidden";
+    "fixed top-0 left-0 w-screen h-screen z-[9999] overflow-hidden touch-none";
 
   useEffect(() => {
-    console.log("doc body", document.body);
     document.body.style.overflow = isFullscreen ? "hidden" : "auto";
   }, [isFullscreen]);
 
@@ -52,7 +51,7 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
   return (
     <div className="relative w-full h-full">
       <div className={`w-full h-full ${isFullscreen ? fullscreenStyle : ""}`}>
-        {isFullscreen ? createPortal(children, document.body) : <>{children}</>}
+        {children}
       </div>
       <button
         onClick={toggleFullscreen}

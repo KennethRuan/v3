@@ -7,12 +7,14 @@ import { PerspectiveCamera, Stats } from "@react-three/drei";
 import Ground from "./ground";
 import Boxes from "./boxes";
 import useIsMobile from "../hooks/useIsMobile";
+import { useFullscreenContext } from "../providers/fullscreen-provider";
 
 export const MOBILE_CAMERA_OFFSET = -6;
 
 const Scene = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isMobile = useIsMobile();
+  const { isFullscreen } = useFullscreenContext();
 
   return (
     <Canvas

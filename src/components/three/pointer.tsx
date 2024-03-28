@@ -4,17 +4,27 @@ import { Vector3 } from "three";
 import useIsMobile from "../hooks/useIsMobile";
 import { useFrame } from "@react-three/fiber";
 import { MOBILE_CAMERA_OFFSET } from "./scene";
+import { useFullscreenContext } from "../providers/fullscreen-provider";
 
 const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
   const ref = useRef<RapierRigidBody>(null);
   const isMobile = useIsMobile();
+  const { isFullscreen } = useFullscreenContext();
+
   // Adding state to track touch position
   const touchPosition = useRef({ x: 0, y: 0 });
   const depth = useRef(-5);
+  const fullscreen = useRef(isFullscreen);
+
+  useEffect(() => {
+    fullscreen.current = isFullscreen;
+  }, [isFullscreen]);
 
   // Update touch position on touch move
   useEffect(() => {
     const handleTouchMove = (e: any) => {
+      if (!fullscreen.current) return;
+
       e.preventDefault();
       const touch = e.touches[0];
       const canvas = canvasRef.current;
@@ -26,13 +36,13 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
     };
 
     const handleTouchStart = (e: any) => {
+      if (!fullscreen.current) return;
       if (e.target !== canvasRef.current) return;
       depth.current = 5;
     };
     const handleTouchEnd = () => {
       depth.current = -5;
     };
-
     window.addEventListener("touchstart", handleTouchStart);
     window.addEventListener("touchend", handleTouchEnd);
     window.addEventListener("touchmove", handleTouchMove);
@@ -48,6 +58,7 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
     // When mouse is being held down move object up
     const handleMouseDown = (e: any) => {
       if (e.target !== canvasRef.current) return;
+
       depth.current = 5;
     };
     // When mouse is released move object down
@@ -82,7 +93,8 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
       <BallCollider args={[1]} />
       <mesh>
         <sphereGeometry args={[1]} />
-        <meshBasicMaterial color="black" />
+        <meshPhongMaterial opacity={0} transparent />
+        {/* <meshStandardMaterial color="black" transparent opacity={0} /> */}
       </mesh>
     </RigidBody>
   );
