@@ -15,6 +15,7 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
   // Update touch position on touch move
   useEffect(() => {
     const handleTouchMove = (e: any) => {
+      e.preventDefault();
       const touch = e.touches[0];
       const canvas = canvasRef.current;
       if (!canvas) return;
