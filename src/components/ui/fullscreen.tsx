@@ -14,6 +14,10 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
     "fixed top-0 left-0 w-screen h-screen z-[9999] overflow-hidden";
 
   useEffect(() => {
+    document.body.style.overflow = isFullscreen ? "hidden" : "auto";
+  }, [isFullscreen]);
+
+  useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
     };
