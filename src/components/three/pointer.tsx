@@ -58,11 +58,12 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
     // When mouse is being held down move object up
     const handleMouseDown = (e: any) => {
       if (e.target !== canvasRef.current) return;
-
+      e.preventDefault();
       depth.current = 5;
     };
     // When mouse is released move object down
-    const handleMouseUp = () => {
+    const handleMouseUp = (e: any) => {
+      e.preventDefault();
       depth.current = -5;
     };
 
@@ -90,9 +91,9 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
 
   return (
     <RigidBody ref={ref} type="kinematicPosition" position={[0, -5, 0]}>
-      <BallCollider args={[1]} />
+      <BallCollider args={[1.5]} />
       <mesh>
-        <sphereGeometry args={[1]} />
+        <sphereGeometry args={[1.5]} />
         <meshPhongMaterial opacity={0} transparent />
         {/* <meshStandardMaterial color="black" transparent opacity={0} /> */}
       </mesh>
