@@ -22,6 +22,7 @@ const config: Config = {
         cafe: "#A18276",
         darkcafe: "#6A544B",
         creme: "#FFF7E2",
+        taupe: "#A59994",
       },
     },
   },

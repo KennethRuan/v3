@@ -3,27 +3,26 @@
 import Cone from "../engineering/cone";
 import Cylinder from "../engineering/cylinder";
 import Sphere from "../engineering/sphere";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
+import projects from "../engineering/projects";
 
 const Engineering = () => {
-  const sectionRef = useRef();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start center", "end center"],
-  });
-  const smoothProg = useSpring(scrollYProgress, { damping: 50, stiffness: 40 });
+  const [selected, setSelected] = useState(-1);
+  const [hovered, setHovered] = useState(-1);
 
-  const rZ1 = useTransform(smoothProg, [0, 0.2, 0.4, 1], [0, 6, -12, 0]);
-
-  const rX2 = useTransform(smoothProg, [0.1, 0.35, 0.65, 0.9], [0, -15, -5, 0]);
-  const rZ2 = useTransform(smoothProg, [0.1, 0.35, 0.65, 0.9], [0, 0, -5, 0]);
-
-  const rX3 = useTransform(smoothProg, [0, 0.3, 0.4, 0.6, 1], [-2, 0, 2, 2, 0]);
-  const rZ3 = useTransform(smoothProg, [0, 0.2, 0.5, 0.7, 1], [0, 2, 0, -1, 0]);
+  const handleClick = (index: number) => {
+    setSelected((p) => (p === index ? -1 : index));
+  };
+  const handleHover = (index: number) => {
+    setHovered(index);
+  };
+  const handleBlur = () => {
+    setHovered(-1);
+  };
 
   return (
-    <div className="relative w-full bg-chalk z-[1] pb-72" ref={sectionRef}>
+    <div className="relative w-full bg-chalk z-[1] pb-72">
       <div className="flex flex-col">
         <div className="w-full flex flex-col text-dusk py-12 px-8">
           <div className="font-bold text-3xl"> engineering. </div>
@@ -36,30 +35,32 @@ const Engineering = () => {
         <div className="flex flex-row">
           <div className="flex-1 pr-12">
             <div className="min-h-[500px] py-2 bg-chalk rounded-r-xl shadow-[0_1px_8px_4px] shadow-dusk/20 text-black overflow-hidden">
-              <div className="px-3 py-1 hover:bg-dusk/10 cursor-pointer flex flex-row items-center text-dusk/80 font-semibold">
-                <p>Harbour</p>
-                <hr className="flex-1 bg-dusk/20 h-[1px] ml-2 mr-2" />
-                <p>2023</p>
+              <div className="px-3 pt-4 text-taupe text-xs font-bold">
+                PROJECTS
               </div>
-              <div className="px-3 py-1 hover:bg-dusk/10 cursor-pointer flex flex-row items-center text-dusk/80 font-semibold">
-                <p>Signal Vest</p>
-                <hr className="flex-1 bg-dusk/20 h-[1px] ml-2 mr-2" />
-                <p>2022</p>
-              </div>
-              <div className="px-3 py-1 hover:bg-dusk/10 cursor-pointer flex flex-row items-center text-dusk/80 font-semibold">
-                <p>Navcare</p>
-                <hr className="flex-1 bg-dusk/20 h-[1px] ml-2 mr-2" />
-                <p>2022</p>
-              </div>
-              <div className="px-3 py-1 hover:bg-dusk/10 cursor-pointer flex flex-row items-center text-dusk/80 font-semibold">
-                <p>Autoslide</p>
-                <hr className="flex-1 bg-dusk/20 h-[1px] ml-2 mr-2" />
-                <p>2021</p>
-              </div>
+
+              {projects.map((project, index) => (
+                <div
+                  className={`px-3 py-1 hover:bg-dusk/10 cursor-pointer flex flex-row items-center text-taupe font-semibold ${
+                    selected === index && "text-dusk bg-dusk/10"
+                  }`}
+                  onClick={() => handleClick(index)}
+                  onMouseEnter={() => handleHover(index)}
+                  onMouseLeave={handleBlur}
+                >
+                  <p>{project.name}</p>
+                  <hr className="flex-1 bg-dusk/20 h-[1px] ml-2 mr-2" />
+                  <p>{project.year}</p>
+                </div>
+              ))}
             </div>
           </div>
           <div className="pl-20 w-3/4 h-[800px]">
-            <div className="w-full h-full bg-chalk rounded-l-xl shadow-[0_1px_8px_4px] shadow-dusk/20"></div>
+            <div className="w-full h-full bg-chalk rounded-l-xl shadow-[0_1px_8px_4px] shadow-dusk/20 overflow-hidden py-4 px-8">
+              {hovered > -1
+                ? projects?.[hovered]?.display
+                : projects?.[selected]?.display}
+            </div>
           </div>
         </div>
       </div>
