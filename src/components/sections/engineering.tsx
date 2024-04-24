@@ -55,7 +55,7 @@ const Engineering = () => {
               ))}
             </div>
           </div>
-          <div className="pl-20 w-3/4 h-[800px]">
+          <div className="pl-20 w-3/4 h-[700px]">
             <div className="w-full h-full bg-chalk rounded-l-xl shadow-[0_1px_8px_4px] shadow-dusk/20 overflow-hidden py-4 px-8">
               {hovered > -1
                 ? projects?.[hovered]?.display
