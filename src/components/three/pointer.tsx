@@ -85,15 +85,15 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
       z: (-inputY * viewport.height) / 2,
     };
 
-    vec.lerp(newPos, 0.08);
+    vec.lerp(newPos, 0.2);
     ref.current?.setNextKinematicTranslation(vec);
   });
 
   return (
     <RigidBody ref={ref} type="kinematicPosition" position={[0, -5, 0]}>
-      <BallCollider args={[1.5]} />
+      <BallCollider args={[1]} />
       <mesh>
-        <sphereGeometry args={[1.5]} />
+        <sphereGeometry args={[1]} />
         <meshPhongMaterial opacity={0} transparent />
         {/* <meshStandardMaterial color="black" transparent opacity={0} /> */}
       </mesh>

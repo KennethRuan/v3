@@ -37,7 +37,7 @@ const Scene = () => {
       />
       <Lights />
       <Suspense>
-        <Physics debug gravity={[0, -30, 0]}>
+        <Physics gravity={[0, -30, 0]}>
           <Ground />
           <Boxes />
           <Pointer canvasRef={canvasRef} />

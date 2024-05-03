@@ -2,6 +2,8 @@ import { cn } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { useFullscreenContext } from "../providers/fullscreen-provider";
 import { createPortal } from "react-dom";
+import ArrowsPointingOutIcon from "../icons/arrows-out";
+import ArrowsPointingInIcon from "../icons/arrows-in";
 
 type FullscreenComponentProps = {
   children: React.ReactNode;
@@ -57,7 +59,7 @@ const FullscreenComponent = ({ children }: FullscreenComponentProps) => {
         onClick={toggleFullscreen}
         className="absolute top-2 right-2 px-4 py-4 border-black text-black cursor-pointer z-[9999]"
       >
-        {isFullscreen ? "A" : "B"}
+        {isFullscreen ? <ArrowsPointingInIcon /> : <ArrowsPointingOutIcon />}
       </button>
     </div>
   );

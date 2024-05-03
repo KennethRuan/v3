@@ -9,10 +9,7 @@ const AutoslidePage = () => {
         {"Django, HTML, CSS, Javascript"}
       </div>
       <div className="mt-2 text-md flex-col">
-        <p>{"optimized scheduling platform for personal support workers."}</p>
-        <p>
-          finalist @ <b>hack the north 2022</b>
-        </p>
+        <p>{"built to automatically fill out your powerpoints with images."}</p>
       </div>
       <div className="h-8" />
       <div className="relative w-full h-[460px]">

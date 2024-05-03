@@ -42,14 +42,19 @@ const Engineering = () => {
               {projects.map((project, index) => (
                 <div
                   className={`px-3 py-1 hover:bg-dusk/10 cursor-pointer flex flex-row items-center text-taupe font-semibold ${
-                    selected === index && "text-dusk bg-dusk/10"
+                    selected === index && "text-dusk bg-dusk/20"
                   }`}
                   onClick={() => handleClick(index)}
                   onMouseEnter={() => handleHover(index)}
                   onMouseLeave={handleBlur}
+                  key={index}
                 >
                   <p>{project.name}</p>
-                  <hr className="flex-1 bg-dusk/20 h-[1px] ml-2 mr-2" />
+                  <hr
+                    className={`flex-1 border-0 h-[1px] ml-2 mr-2 ${
+                      selected === index ? "bg-creme" : "bg-dusk/20"
+                    }`}
+                  />
                   <p>{project.year}</p>
                 </div>
               ))}
