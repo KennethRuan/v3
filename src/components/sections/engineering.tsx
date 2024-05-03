@@ -57,7 +57,7 @@ const Engineering = () => {
               ))}
 
               {/* MOBILE: PROJECT SCREEN UNDER */}
-              <div className="w-full px-4 py-8">
+              <div className="w-full px-4 py-8 lg:hidden">
                 {hovered > -1
                   ? projects?.[hovered]?.display
                   : projects?.[selected]?.display}
