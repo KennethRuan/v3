@@ -91,9 +91,9 @@ const Pointer = ({ vec = new Vector3(), canvasRef }: any) => {
 
   return (
     <RigidBody ref={ref} type="kinematicPosition" position={[0, -5, 0]}>
-      <BallCollider args={[1]} />
+      <BallCollider args={[1.5]} />
       <mesh>
-        <sphereGeometry args={[1]} />
+        <sphereGeometry args={[1.5]} />
         <meshPhongMaterial opacity={0} transparent />
         {/* <meshStandardMaterial color="black" transparent opacity={0} /> */}
       </mesh>

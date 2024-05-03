@@ -26,10 +26,7 @@ const Engineering = () => {
       <div className="flex flex-col">
         <div className="w-full flex flex-col text-dusk py-12 px-8">
           <div className="font-bold text-3xl"> engineering. </div>
-          <div className="text-lg">i wanna be a systems architect.</div>
-          <div className="text-lg">
-            want to build cool backends make the world go brrrr.
-          </div>
+          <div className="text-lg">a showcase of some highlights.</div>
         </div>
 
         <div className="flex flex-row">
@@ -42,17 +39,17 @@ const Engineering = () => {
               {projects.map((project, index) => (
                 <div
                   className={`px-3 py-1 hover:bg-dusk/10 cursor-pointer flex flex-row items-center text-taupe font-semibold ${
-                    selected === index && "text-dusk bg-dusk/20"
+                    selected === index && "text-dusk bg-dusk/10"
                   }`}
                   onClick={() => handleClick(index)}
                   onMouseEnter={() => handleHover(index)}
                   onMouseLeave={handleBlur}
                   key={index}
                 >
-                  <p>{project.name}</p>
+                  <p className="truncate">{project.name}</p>
                   <hr
                     className={`flex-1 border-0 h-[1px] ml-2 mr-2 ${
-                      selected === index ? "bg-creme" : "bg-dusk/20"
+                      selected === index ? "bg-creme" : "bg-dusk/10"
                     }`}
                   />
                   <p>{project.year}</p>
@@ -61,7 +58,7 @@ const Engineering = () => {
             </div>
           </div>
           <div className="pl-20 w-3/4 h-[700px]">
-            <div className="w-full h-full bg-chalk rounded-l-xl shadow-[0_1px_8px_4px] shadow-dusk/20 overflow-hidden py-4 px-8">
+            <div className="w-full h-full bg-chalk rounded-l-xl shadow-[0_1px_8px_4px] shadow-dusk/20 overflow-auto py-4 px-8">
               {hovered > -1
                 ? projects?.[hovered]?.display
                 : projects?.[selected]?.display}

@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import Image from "next/image";
 
 const NavcarePage = () => {
@@ -15,8 +16,13 @@ const NavcarePage = () => {
         </p>
       </div>
       <div className="h-8" />
-      <div className="relative w-full h-[460px]">
-        <div className="absolute top-0 left-0 w-2/3 aspect-[19/10]">
+      <div className="relative w-full max-w-[1000px] h-[460px] space-y-5">
+        <div
+          className={cn(
+            "relative w-full aspect-[19/10]",
+            "lg:absolute lg:w-2/3 top-0 left-0"
+          )}
+        >
           <div className="relative w-full h-full">
             <Image
               src="/images/navcare-1.png"
@@ -26,7 +32,12 @@ const NavcarePage = () => {
             />
           </div>
         </div>
-        <div className="absolute bottom-0 right-0 w-3/5 aspect-[16/10] bg-white">
+        <div
+          className={cn(
+            "relative w-full aspect-[16/10] bg-white",
+            "lg:absolute lg:w-3/5 bottom-0 right-0"
+          )}
+        >
           <div className="relative w-full h-full">
             <Image
               src="/images/navcare-2.jpeg"

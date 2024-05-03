@@ -12,8 +12,8 @@ const AutoslidePage = () => {
         <p>{"built to automatically fill out your powerpoints with images."}</p>
       </div>
       <div className="h-8" />
-      <div className="relative w-full h-[460px]">
-        <div className="absolute top-0 left-0 w-4/5 aspect-[19/10]">
+      <div className="relative w-full max-w-[1000px] h-[460px]">
+        <div className="absolute top-0 left-0 w-full lg:w-4/5 aspect-[19/10]">
           <div className="relative w-full h-full">
             <Image
               src="/images/autoslide-1.jpeg"

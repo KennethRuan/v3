@@ -22,7 +22,6 @@ const CustomCursor = ({ children }) => {
   }, []);
 
   useEffect(function fillCursor() {
-    // On mouse down, fill the cursor
     const handleMouseDown = () => {
       if (!cursorRef.current) return;
       cursorRef.current.style.backgroundColor = "black";
@@ -43,45 +42,47 @@ const CustomCursor = ({ children }) => {
     };
   }, []);
 
-  useEffect(function checkCursorVisibility() {
-    if (!customCursorSectionRef.current) return;
+  useEffect(
+    function checkCursorVisibility() {
+      const handleMouseEnter = () => {
+        if (!cursorRef.current) return;
+        cursorRef.current.style.opacity = "1";
+      };
+      const handleMouseLeave = () => {
+        if (!cursorRef.current) return;
+        cursorRef.current.style.opacity = "0";
+      };
 
-    const handleMouseEnter = () => {
-      if (!cursorRef.current) return;
-      cursorRef.current.style.opacity = "1";
-    };
-
-    const handleMouseLeave = () => {
-      if (!cursorRef.current) return;
-      cursorRef.current.style.opacity = "0";
-    };
-
-    customCursorSectionRef.current.addEventListener(
-      "mouseenter",
-      handleMouseEnter
-    );
-    customCursorSectionRef.current.addEventListener(
-      "mouseleave",
-      handleMouseLeave
-    );
-
-    return () => {
-      customCursorSectionRef.current.removeEventListener(
+      if (!customCursorSectionRef?.current) return;
+      customCursorSectionRef.current.addEventListener(
         "mouseenter",
         handleMouseEnter
       );
-      customCursorSectionRef.current.removeEventListener(
+      customCursorSectionRef.current.addEventListener(
         "mouseleave",
         handleMouseLeave
       );
-    };
-  }, []);
+
+      return () => {
+        if (!customCursorSectionRef.current) return;
+        customCursorSectionRef.current.removeEventListener(
+          "mouseenter",
+          handleMouseEnter
+        );
+        customCursorSectionRef.current.removeEventListener(
+          "mouseleave",
+          handleMouseLeave
+        );
+      };
+    },
+    [customCursorSectionRef]
+  );
 
   return (
     <div className="relative w-full h-full cursor-none">
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-20 h-20 border border-black rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-20 h-20 border border-black rounded-full pointer-events-none z-[9999] max-lg:hidden"
       />
       <div className="w-full h-full" ref={customCursorSectionRef}>
         {children}
