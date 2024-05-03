@@ -43,7 +43,7 @@ const Scene = () => {
           <Pointer canvasRef={canvasRef} />
         </Physics>
       </Suspense>
-      <Stats />
+      {/* <Stats /> */}
     </Canvas>
   );
 };
