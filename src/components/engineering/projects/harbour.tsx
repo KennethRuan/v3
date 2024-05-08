@@ -32,6 +32,7 @@ const HarbourPage = () => {
               src="/images/harbour-1.png"
               alt="Harbour"
               className="border-4 border-black object-cover"
+              loading="eager"
               fill
             />
           </div>
@@ -47,6 +48,7 @@ const HarbourPage = () => {
               src="/images/harbour-2.png"
               alt="Harbour"
               className="border-4 border-black"
+              loading="eager"
               fill
             />
           </div>

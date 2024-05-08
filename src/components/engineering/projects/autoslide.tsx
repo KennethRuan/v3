@@ -19,6 +19,7 @@ const AutoslidePage = () => {
               src="/images/autoslide-1.jpeg"
               alt="Autoslide Banner"
               className="border-4 border-black object-cover"
+              loading="eager"
               fill
             />
           </div>

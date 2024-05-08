@@ -28,6 +28,7 @@ const NavcarePage = () => {
               src="/images/navcare-1.png"
               alt="Navcare Highlights"
               className="border-4 border-black object-contain"
+              loading="eager"
               fill
             />
           </div>
@@ -43,6 +44,7 @@ const NavcarePage = () => {
               src="/images/navcare-2.jpeg"
               alt="Harbour"
               className="border-4 border-black object-contain"
+              loading="eager"
               fill
             />
           </div>
