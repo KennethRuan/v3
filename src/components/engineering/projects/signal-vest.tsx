@@ -23,6 +23,7 @@ const SignalVestPage = () => {
               src="/images/signal-1.jpeg"
               alt="Navcare Highlights"
               className="border-4 border-black object-cover"
+              loading="eager"
               fill
             />
           </div>
