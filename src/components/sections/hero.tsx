@@ -32,9 +32,18 @@ export default function Hero() {
                   <div className="h-4" />
                   <div className="text-lg lg:text-2xl">currently...</div>
                   <ul className="list-disc list-inside text-lg lg:text-2xl">
-                    <li>building a music distribution platform</li>
+                    <li>
+                      <span className="line-through">
+                        building a music distribution platform
+                      </span>
+                    </li>
                     <li>learning videography</li>
-                    <li>trying to run a half marathon</li>
+                    <li>
+                      <span className="line-through">
+                        trying to run a half marathon
+                      </span>
+                    </li>
+                    <li>learning to build a multiplayer game</li>
                   </ul>
                 </div>
               </div>
